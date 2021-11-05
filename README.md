@@ -4,7 +4,12 @@ Executes text templates using data from environment variables and sends the resu
 
 [![Build Status](https://travis-ci.org/williambailey/go-envtmpl.svg)](https://travis-ci.org/williambailey/go-envtmpl)
 
-## Usage:
+[scheme://username:password@domain:8080/path?query=string#fragment_id]
+[scheme://username:@domain?a=1&b=2&a=11]
+[scheme:opaque?query=string#fragment_id]
+[../bar/baz]
+[scheme://domain/foo/qux/ ../bar/baz]
+# Usage:
 
 #### envtmpl tmplDir tmplName.tmpl
 
@@ -164,7 +169,7 @@ Template:
 Output:
 
     1c49043e
-    052901bf
+    110b03ac
 
 Template:
 
@@ -579,7 +584,7 @@ Template:
     Fragment: "{{ .Fragment }}"
     RequestURI: "{{ .RequestURI }}"
     {{end}}
-    {{ template "u" "scheme://username:password@domain:port/path?query=string#fragment_id" | url }}
+    {{ template "u" "scheme://username:password@domain:8080/path?query=string#fragment_id" | url }}
     {{ template "u" "scheme://username:@domain?a=1&b=2&a=11" | url }}
     {{ template "u" "scheme:opaque?query=string#fragment_id" | url }}
     {{ template "u" "../bar/baz" | url }}
@@ -588,7 +593,7 @@ Template:
 Output:
 
     
-    Url: scheme://username:password@domain:port/path?query=string#fragment_id
+    Url: scheme://username:password@domain:8080/path?query=string#fragment_id
     IsAbs: true
     Scheme: "scheme"
     Opaque: ""
@@ -596,7 +601,7 @@ Output:
     Username: "username"
     HasPassword: true
     Password: "password"
-    Host: "domain:port"
+    Host: "domain:8080"
     Path: "/path"
     RawQuery: "query=string"
     Query: {
@@ -714,7 +719,7 @@ Template:
 
 Output:
 
-    50139f69-a54f-41c5-8c92-21c165c2eb2c
+    9710ad91-8aa0-4c62-9bc7-3694aa77677b
 
 ### wordWrap
 

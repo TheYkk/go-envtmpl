@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"net/url"
 )
 
@@ -24,7 +25,7 @@ Query: {{ .Query | jsonEncode }}
 Fragment: "{{ .Fragment }}"
 RequestURI: "{{ .RequestURI }}"
 {{end}}
-{{ template "u" "scheme://username:password@domain:port/path?query=string#fragment_id" | %[1]s }}
+{{ template "u" "scheme://username:password@domain:8080/path?query=string#fragment_id" | %[1]s }}
 {{ template "u" "scheme://username:@domain?a=1&b=2&a=11" | %[1]s }}
 {{ template "u" "scheme:opaque?query=string#fragment_id" | %[1]s }}
 {{ template "u" "../bar/baz" | %[1]s }}
@@ -35,6 +36,7 @@ RequestURI: "{{ .RequestURI }}"
 				u   *url.URL
 				err error
 			)
+			fmt.Println(in)
 			switch len(in) {
 			case 1:
 				u, err = url.Parse(in[0])

@@ -28,7 +28,7 @@ func run(t *testing.T, env []string, args []string, stdin *[]byte) (int, *bytes.
 		inW.Write(*stdin)
 		inW.Close()
 	}
-	app := new(env, args, inR, outW, errW)
+	app := newTmpl(env, args, inR, outW, errW)
 	r := app.main()
 	outW.Close()
 	errW.Close()
@@ -88,7 +88,7 @@ func TestInvokeWithHelpFlagDisplaysHelpAndExitsWithUsage(t *testing.T) {
 				b.WriteString(v)
 			}
 			if !bytes.Contains(e.Bytes(), b.Bytes()) {
-				t.Errorf("Expecting stderr to contain `%s` example `%s`.", n, b)
+				t.Errorf("Expecting stderr to contain `%s` example `%s`.", n, b.String())
 			}
 		}
 	}

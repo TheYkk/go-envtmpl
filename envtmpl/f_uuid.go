@@ -1,6 +1,6 @@
 package main
 
-import "code.google.com/p/go-uuid/uuid"
+import "github.com/google/uuid"
 
 func init() {
 	funcMap["uuid"] = &tmplFuncStruct{

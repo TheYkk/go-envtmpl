@@ -11,8 +11,10 @@ import (
 	"text/template"
 )
 
-const Name = "envtmpl"
-const Version = "0.3.0"
+const (
+	Name    = "envtmpl"
+	Version = "0.3.0"
+)
 
 const usageTemplate = `
 Usage:
@@ -96,10 +98,12 @@ Output:
 {{ end }}
 `
 
-const exitOk = 0
-const exitUsage = 1
-const exitTemplateParseError = 2
-const exitTemplateExecutionError = 3
+const (
+	exitOk                     = 0
+	exitUsage                  = 1
+	exitTemplateParseError     = 2
+	exitTemplateExecutionError = 3
+)
 
 var (
 	funcMap         = newTmplFuncMap()
@@ -107,10 +111,10 @@ var (
 )
 
 func main() {
-	os.Exit(new(os.Environ(), os.Args, os.Stdin, os.Stdout, os.Stderr).main())
+	os.Exit(newTmpl(os.Environ(), os.Args, os.Stdin, os.Stdout, os.Stderr).main())
 }
 
-func new(
+func newTmpl(
 	env []string,
 	args []string,
 	stdin io.Reader,

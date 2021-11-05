@@ -1,6 +1,6 @@
 package main
 
-import "code.google.com/p/go.exp/utf8string"
+import "golang.org/x/exp/utf8string"
 
 func init() {
 	funcMap["slice"] = &tmplFuncStruct{
